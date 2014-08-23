@@ -83,6 +83,8 @@ class testit(Thread):
 		else:
 			if self._source["patch"][1].endswith("debian.tar.bz2"):
 				extractFlag = 'j'
+			elif self._source["patch"][1].endswith("debian.tar.xz"):
+				extractFlag = 'J'
 			else:
 				extractFlag = 'z'
 			self.exe("cd /tmp/"+directory+" ; mkdir "+directory)

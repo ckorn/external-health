@@ -197,6 +197,7 @@ if __name__ == "__main__":
 			if filename.endswith("diff.gz"): source["patch"] = (md5sum, filename)
 			if filename.endswith("debian.tar.gz"): source["patch"] = (md5sum, filename)
 			if filename.endswith("debian.tar.bz2"): source["patch"] = (md5sum, filename)
+			if filename.endswith("debian.tar.xz"): source["patch"] = (md5sum, filename)
 			if filename.endswith("dsc"): source["dsc"] = (md5sum, filename)
 		if infiles and line.find(":") != -1: infiles = False
 

@@ -36,6 +36,7 @@ data = []
 archiveUrl = ""
 nowatch = []
 warning = []
+ignored = []
 uptodate = []
 needsupdate = []
 
@@ -140,7 +141,15 @@ class testit(Thread):
 					self._source["Warning"].append(entry.firstChild.data)
 
 		if len(self._source["Warning"]) > 0:
-			warning.append(self._source)
+			ignore = False
+			# Google just down their code hosting. Just too lazy to fix all packages.
+			for w in self._source["Warning"]:
+				if "In debian/watch, no matching hrefs for watch line" in w and "code.google.com" in w:
+					ignore = True
+			if ignore:
+				ignored.append(self._source)
+			else:
+				warning.append(self._source)
 			testAdded = True
 
 		if not testAdded:
@@ -240,7 +249,7 @@ if __name__ == "__main__":
 
 	os.chdir(curdir)
 
-	render_args = { 'data': data, 'needsupdate': needsupdate, 'archiveUrl': archiveUrl, 'warning': warning, 'nowatch': nowatch, 'uptodate': uptodate }
+	render_args = { 'data': data, 'needsupdate': needsupdate, 'archiveUrl': archiveUrl, 'warning': warning, 'ignored': ignored, 'nowatch': nowatch, 'uptodate': uptodate }
 	try:
 		#html_code = serve_template('templ.html', data = data, needsupdate = needsupdate, archiveUrl = archiveUrl, warning = warning, nowatch = nowatch, uptodate = uptodate )
 		html_code = serve_template('templ.html', render_args = render_args)

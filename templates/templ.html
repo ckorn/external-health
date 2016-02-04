@@ -2,6 +2,7 @@
 	data = render_args['data']
         needsupdate = render_args['needsupdate']
         warning = render_args['warning']
+        ignored = render_args['ignored']
         nowatch = render_args['nowatch']
         uptodate = render_args['uptodate']
         archiveUrl = render_args['archiveUrl']
@@ -33,7 +34,7 @@
 </table>
 
 <br/><br/><br/>
-<h1>Warnings (${len(warning)})</h1><br/>
+<h1>Warnings (${len(warning)}, Ignored=${len(ignored)})</h1><br/>
 <table>
 	<tr>
 		<td>Package</td>

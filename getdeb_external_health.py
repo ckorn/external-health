@@ -144,7 +144,7 @@ class testit(Thread):
 			ignore = False
 			# Google just down their code hosting. Just too lazy to fix all packages.
 			for w in self._source["Warning"]:
-				if "In debian/watch, no matching hrefs for watch line" in w and "code.google.com" in w:
+				if "no matching hrefs for watch line" in w and "code.google.com" in w:
 					ignore = True
 			if ignore:
 				ignored.append(self._source)
